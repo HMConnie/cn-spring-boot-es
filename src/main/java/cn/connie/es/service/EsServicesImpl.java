@@ -34,4 +34,10 @@ public class EsServicesImpl {
         Page<TaskTodoItemTO> all = taskRepositories.search(criteriaQuery);
         return new CollectionTO<>(all.getContent(), all.getTotalElements(), esCriteria.getPageSize());
     }
+
+    public Long getCount(EsCriteria esCriteria){
+        CriteriaQuery criteriaQuery = EsParamUtil.createCriteria(esCriteria);
+        Page<TaskTodoItemTO> all = taskRepositories.search(criteriaQuery);
+        return all.getTotalElements();
+    }
 }

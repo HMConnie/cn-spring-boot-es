@@ -38,9 +38,8 @@ class MainTests {
         EsCriteria criteria = new EsCriteria();
         criteria.setProjectId(1000L);
         criteria.setIndexName(EsConstant.ES_INDEX_AUDIT_PROJECT_ITEM_INFO+"*");
-//        CollectionTO<TaskTodoItemTO> task = services.getTaskByCriteria(criteria);
-//        System.out.println(task);
-
+        CollectionTO<TaskTodoItemTO> task = services.getTaskByCriteria(criteria);
+        System.out.println(task);
     }
 
 }

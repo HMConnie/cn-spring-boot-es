@@ -59,4 +59,13 @@ public class SearchController {
         taskTodoItemTO.setStatus(Byte.valueOf("1"));
         esServices.insertOrUpdate(taskTodoItemTO);
     }
+
+
+    @RequestMapping("/task/count")
+    public Long taskCount(@RequestParam("projectId") Long projectId) {
+        EsCriteria esCriteria = new EsCriteria();
+        esCriteria.setProjectId(projectId);
+        esCriteria.setIndexName(EsConstant.ES_INDEX_AUDIT_PROJECT_ITEM_INFO + "*");
+        return esServices.getCount(esCriteria);
+    }
 }
