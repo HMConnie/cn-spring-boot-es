@@ -8,9 +8,8 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
-@Document(indexName="#{indexNameConfig.indexName}")
+@Document(indexName="#{T(cn.connie.es.config.IndexNameConfig).getTaskItemIndex()}")
 public class TaskTodoItemTO extends BasicTO {
-
 
     @Id
     private String itemId;

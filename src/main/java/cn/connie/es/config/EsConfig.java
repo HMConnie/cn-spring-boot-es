@@ -2,12 +2,14 @@ package cn.connie.es.config;
 
 import cn.connie.config.center.client.GlobalConfigration;
 import cn.connie.config.center.client.properties.spring.AutoReloadPropertySourcesPlaceholderConfigurer;
+import cn.connie.es.constant.EsConstant;
 import org.apache.commons.lang.StringUtils;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestHighLevelClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.elasticsearch.core.ElasticsearchRestTemplate;
+import org.springframework.data.elasticsearch.core.mapping.IndexCoordinates;
 import org.springframework.util.Assert;
 
 import java.io.IOException;
@@ -17,7 +19,7 @@ import java.util.List;
 @Configuration
 public class EsConfig {
 
-    public RestHighLevelClient getRestClient(){
+    public RestHighLevelClient getRestClient() {
 //        String hostsString = GlobalConfigration.toString("es.host");
         String hostsString = "47.94.37.157:9200";
         String[] nodes = hostsString.split(",");
@@ -32,7 +34,7 @@ public class EsConfig {
                 throw new IllegalStateException("Invalid ES nodes " + "property '" + node + "'", ex);
             }
         }
-      return EsClientBuilder.build(httpHosts)
+        return EsClientBuilder.build(httpHosts)
                 .setConnectionRequestTimeoutMillis(10000)
                 .setConnectTimeoutMillis(10000)
                 .setSocketTimeoutMillis(30000)
@@ -51,7 +53,7 @@ public class EsConfig {
 //    }
 
     @Bean("elasticsearchTemplate")
-    public ElasticsearchRestTemplate getElasticsearchRestTemplate(){
+    public ElasticsearchRestTemplate getElasticsearchRestTemplate() {
         return new ElasticsearchRestTemplate(getRestClient());
     }
 }

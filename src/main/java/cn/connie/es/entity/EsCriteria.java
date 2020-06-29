@@ -202,7 +202,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public Long getStartraw() {
-        return startraw;
+        return Long.valueOf(super.getStartIndex());
     }
 
     public void setStartraw(Long startraw) {
@@ -210,7 +210,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public Long getEndraw() {
-        return endraw;
+        return Long.valueOf(super.getLimit());
     }
 
     public void setEndraw(Long endraw) {

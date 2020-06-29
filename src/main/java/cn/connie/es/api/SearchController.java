@@ -7,7 +7,6 @@ import cn.connie.es.service.EsServicesImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -19,10 +18,13 @@ public class SearchController {
     private EsServicesImpl esServices;
 
 
-    @RequestMapping(value = "/task",method = RequestMethod.GET)
-    public CollectionTO<TaskTodoItemTO> search(@RequestParam("projectId")Long projectId ){
+    @RequestMapping(value = "/task", method = RequestMethod.GET)
+    public CollectionTO<TaskTodoItemTO> search(Long projectId,String itemId,int pageNo,int pageSize) {
         EsCriteria esCriteria = new EsCriteria();
         esCriteria.setProjectId(projectId);
+        esCriteria.setItemId(itemId);
+        esCriteria.setPageNo(pageNo);
+        esCriteria.setPageSize(pageSize);
         CollectionTO<TaskTodoItemTO> taskTodoItemTOS = esServices.getTaskByCriteria(esCriteria);
         return taskTodoItemTOS;
     }
