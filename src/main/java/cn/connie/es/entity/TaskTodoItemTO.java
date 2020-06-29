@@ -1,6 +1,5 @@
 package cn.connie.es.entity;
 
-import cn.connie.config.center.common.base.BasicTO;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.elasticsearch.annotations.Document;
 import org.springframework.data.elasticsearch.annotations.Field;
@@ -8,19 +7,14 @@ import org.springframework.data.elasticsearch.annotations.FieldType;
 
 import java.util.List;
 
-@Document(indexName="#{T(cn.connie.es.config.IndexNameConfig).getTaskItemIndex()}")
-public class TaskTodoItemTO extends BasicTO {
+@Document(indexName = "#{T(cn.connie.es.config.IndexAspect).getIndexName()}")
+public class TaskTodoItemTO extends BasicEsTO {
 
     @Id
     private String itemId;
 
-
     @Field(type = FieldType.Long)
     private Long projectId;
-
-    @Field(type = FieldType.Text)
-    private String itemIndex;
-
 
     @Field(type = FieldType.Text)
     private String itemMd5;
@@ -62,14 +56,6 @@ public class TaskTodoItemTO extends BasicTO {
 
     public void setProjectId(Long projectId) {
         this.projectId = projectId;
-    }
-
-    public String getItemIndex() {
-        return itemIndex;
-    }
-
-    public void setItemIndex(String itemIndex) {
-        this.itemIndex = itemIndex;
     }
 
     public String getItemId() {

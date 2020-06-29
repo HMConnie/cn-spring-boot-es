@@ -1,12 +1,13 @@
 package cn.connie.es.entity;
 
 
-import cn.connie.config.center.common.base.BasicCriteria;
-
 import java.util.List;
 import java.util.Map;
 
-public class EsCriteria extends BasicCriteria {
+public class EsCriteria extends BasicEsCriteria {
+
+
+    private String indexName;
 
     private Long projectId;
 
@@ -375,5 +376,13 @@ public class EsCriteria extends BasicCriteria {
 
     public void setReviewOpUids(List<String> reviewOpUids) {
         this.reviewOpUids = reviewOpUids;
+    }
+
+    public String getIndexName() {
+        return indexName;
+    }
+
+    public void setIndexName(String indexName) {
+        this.indexName = indexName;
     }
 }
