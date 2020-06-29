@@ -32,7 +32,7 @@ public class IndexAspect {
 
     private BasicEsTO getBasicEsTO(Object[] args) {
         BasicEsTO basicEsTO = null;
-        if (args.length > 0) {
+        if (args != null && args.length > 0) {
             for (Object arg : args) {
                 if (arg instanceof BasicEsTO) {
                     basicEsTO = (BasicEsTO) arg;
