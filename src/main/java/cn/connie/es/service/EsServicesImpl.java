@@ -6,6 +6,8 @@ import cn.connie.es.constant.EsConstant;
 import cn.connie.es.entity.EsCriteria;
 import cn.connie.es.entity.TaskTodoItemTO;
 import cn.connie.es.repositories.TaskRepositories;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.elasticsearch.core.query.CriteriaQuery;
 import org.springframework.stereotype.Service;
@@ -15,6 +17,8 @@ import java.util.List;
 
 @Service
 public class EsServicesImpl {
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EsServicesImpl.class);
 
     @Resource
     TaskRepositories taskRepositories;
@@ -31,7 +35,15 @@ public class EsServicesImpl {
     }
 
     public void deleteById(String itemId) {
-        IndexNameConfig.setTaskItemIndex(EsConstant.ES_INDEX_AUDIT_PROJECT_ITEM_INFO + "*");
+        EsCriteria esCriteria = new EsCriteria();
+        esCriteria.setItemId(itemId);
+        List<TaskTodoItemTO> content = getTaskByCriteria(esCriteria).getList();
+        if (content == null || content.isEmpty()) {
+            LOGGER.info("没有找到这条数据!");
+            return;
+        }
+        TaskTodoItemTO taskTodoItemTO = content.get(0);
+        IndexNameConfig.setTaskItemIndex(taskTodoItemTO.getItemIndex());
         taskRepositories.deleteById(itemId);
     }
 

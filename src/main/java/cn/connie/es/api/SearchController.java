@@ -19,7 +19,7 @@ public class SearchController {
 
 
     @RequestMapping(value = "/task", method = RequestMethod.GET)
-    public CollectionTO<TaskTodoItemTO> search(Long projectId,String itemId,int pageNo,int pageSize) {
+    public CollectionTO<TaskTodoItemTO> search(Long projectId, String itemId, int pageNo, int pageSize) {
         EsCriteria esCriteria = new EsCriteria();
         esCriteria.setProjectId(projectId);
         esCriteria.setItemId(itemId);
@@ -27,5 +27,11 @@ public class SearchController {
         esCriteria.setPageSize(pageSize);
         CollectionTO<TaskTodoItemTO> taskTodoItemTOS = esServices.getTaskByCriteria(esCriteria);
         return taskTodoItemTOS;
+    }
+
+
+    @RequestMapping(value = "/task/delete", method = RequestMethod.POST)
+    public void delete(String itemId) {
+        esServices.deleteById(itemId);
     }
 }

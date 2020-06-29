@@ -202,7 +202,11 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public Long getStartraw() {
-        return Long.valueOf(super.getStartIndex());
+        int startIndex = super.getStartIndex();
+        if (startIndex != 0) {
+            return Long.valueOf(startIndex);
+        }
+        return null;
     }
 
     public void setStartraw(Long startraw) {
@@ -210,7 +214,11 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public Long getEndraw() {
-        return Long.valueOf(super.getLimit());
+        int limit = super.getLimit();
+        if (limit != 0) {
+            return Long.valueOf(limit);
+        }
+        return null;
     }
 
     public void setEndraw(Long endraw) {
@@ -270,7 +278,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public void setIsAccidentalInjury(Integer isAccidentalInjury) {
-        this.isAccidentalInjury=isAccidentalInjury;
+        this.isAccidentalInjury = isAccidentalInjury;
     }
 
     public Integer getIsOmission() {
@@ -278,7 +286,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public void setIsOmission(Integer isOmission) {
-        this.isOmission=isOmission;
+        this.isOmission = isOmission;
     }
 
     public Integer getTaskIsWrong() {
@@ -286,7 +294,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public void setTaskIsWrong(Integer taskIsWrong) {
-        this.taskIsWrong=taskIsWrong;
+        this.taskIsWrong = taskIsWrong;
     }
 
     public Integer getTaskIsAccidentalInjury() {
@@ -294,7 +302,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public void setTaskIsAccidentalInjury(Integer taskIsAccidentalInjury) {
-        this.taskIsAccidentalInjury=taskIsAccidentalInjury;
+        this.taskIsAccidentalInjury = taskIsAccidentalInjury;
     }
 
     public Integer getTaskIsOmission() {
@@ -302,7 +310,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public void setTaskIsOmission(Integer taskIsOmission) {
-        this.taskIsOmission=taskIsOmission;
+        this.taskIsOmission = taskIsOmission;
     }
 
     public String getItemId() {
@@ -350,7 +358,7 @@ public class EsCriteria extends BasicCriteria {
     }
 
     public void setTaskOpUid(String taskOpUid) {
-        this.taskOpUid=taskOpUid;
+        this.taskOpUid = taskOpUid;
     }
 
     public String getCheckOpUid() {
